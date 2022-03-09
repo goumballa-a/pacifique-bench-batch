@@ -1,0 +1,29 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+package fr.hm.pacifique.common.batch.listener;
+
+import fr.hm.pacifique.common.service.CrexFileService;
+import org.springframework.batch.core.ExitStatus;
+import org.springframework.batch.core.StepExecution;
+import org.springframework.batch.core.StepExecutionListener;
+
+public class CrexListener implements StepExecutionListener {
+    private final String reportLabel;
+    private final CrexFileService crexFileService;
+
+    public CrexListener(String reportLabel, CrexFileService crexFileService) {
+        this.reportLabel = reportLabel;
+        this.crexFileService = crexFileService;
+    }
+
+    public void beforeStep(StepExecution stepExecution) {
+
+    }
+
+    public ExitStatus afterStep(StepExecution stepExecution) {
+        return stepExecution.getExitStatus();
+    }
+}

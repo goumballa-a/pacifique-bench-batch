@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>fr.hm.pacifique</groupId>
+    <artifactId>pacifique-bench-batch</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>cfg</module>
+        <module>app</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <name>pacifique-bench-batch</name>
+    <description>Projet de bench du socle Pacifique pour Harmonie Mutuelle</description>
+
+    <!-- Repository pour les livraisons -->
+    <distributionManagement>
+        <site>
+            <id>sihm.maven.sites</id>
+            <url>${sihm.sftp.javadoc}</url>
+        </site>
+        <repository>
+            <id>sihm.release</id>
+            <name>Repository Interne des Releases</name>
+            <url>${hm.repository.url}</url>
+        </repository>
+        <snapshotRepository>
+            <id>sihm.snapshots</id>
+            <name>Repository Interne des Snapshots</name>
+            <uniqueVersion>false</uniqueVersion>
+            <url>${hm.repository.snapshot.url}</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <spring.boot.version>2.0.6.RELEASE</spring.boot.version>
+
+        <hm.fwk.spring.api.version>2.0.1</hm.fwk.spring.api.version>
+        <hm.fwk.spring.batch.version>2.0.0</hm.fwk.spring.batch.version>
+
+        <javax.inject.version>1</javax.inject.version>
+
+        <!-- pacifique -->
+        <pacifique-socle-lib.version>1.8.0</pacifique-socle-lib.version>
+        <h2.version>1.4.198</h2.version>
+    </properties>
+
+    <!-- Paramètres gestionnaire de version -->
+    <scm>
+        <connection>scm:git:https://github.com/hm-it/pacifique-bench-batch.git</connection>
+        <developerConnection>scm:git:https://github.com/hm-it/pacifique-bench-batch.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <!-- dependencies management -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- Import dependency management from Spring Boot -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>fr.hm.fwk</groupId>
+                <artifactId>fwk-spring-hm-api</artifactId>
+                <version>${hm.fwk.spring.api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>fr.hm.fwk</groupId>
+                <artifactId>fwk-spring-hm-batch</artifactId>
+                <version>${hm.fwk.spring.batch.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>fr.hm.pacifique</groupId>
+                <artifactId>pacifique-socle-lib</artifactId>
+                <version>${pacifique-socle-lib.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>${h2.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- Spring boot fat jar -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+
+        <!-- Security -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-ldap</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-ldap</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Actuator -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+
+        <!-- Devtools -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Tests -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.restdocs</groupId>
+            <artifactId>spring-restdocs-mockmvc</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Deprecated WIP -->
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>${javax.inject.version}</version>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <envClassifier>dev</envClassifier>
+            </properties>
+        </profile>
+        <profile>
+            <id>int</id>
+            <properties>
+                <envClassifier>int</envClassifier>
+            </properties>
+        </profile>
+        <profile>
+            <id>liv</id>
+            <properties>
+                <envClassifier>liv</envClassifier>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>sonar-project.properties</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <!-- Permet l'upload via scp vers le serveur Nexus. -->
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+                <version>2.12</version>
+            </extension>
+        </extensions>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring.boot.version}</version>
+                    <configuration>
+                        <classifier>exec</classifier>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <!-- Repackages les JAR et WAR en jar exécutable. -->
+                                <goal>repackage</goal>
+                                <!-- Génère le fichier build-info.properties pour le endpoint /actuator/info -->
+                                <goal>build-info</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                    <delimiters>
+                        <delimiter>${*}</delimiter>
+                    </delimiters>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

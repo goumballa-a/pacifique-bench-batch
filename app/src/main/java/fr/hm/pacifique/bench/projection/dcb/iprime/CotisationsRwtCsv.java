@@ -1,0 +1,81 @@
+package fr.hm.pacifique.bench.projection.dcb.iprime;
+
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import fr.hm.pacifique.common.projection.common.AbstractCsv;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@JsonPropertyOrder
+public class CotisationsRwtCsv extends AbstractCsv {
+    private String tsPeriode;
+    private String cdSi;
+    private String cdTarif;
+    private String moisDeCouverture;
+    private String anneeDeCouverture;
+    private String mntDeCotisationsHt;
+    private String mntDeCotisationsTtc;
+    private String cdEntiteJuridiqueCi;
+    private String lbEntiteDeRattachementCi;
+    private String lbEntiteAccedanteCi;
+    private String lbCentreDeGestionCi;
+    private String lbMarche;
+    private String topForcageDuMarche;
+    private String lbSousTypeDuMarche1;
+    private String lbTypeBeneficiaire;
+    private String cdFederationTechniquePmSouscriptrice;
+    private String lbFederationTechniquePmSouscriptrice;
+    private String cdCc;
+    private String cdJuridiqueCc;
+    private String dateDebutCc;
+    private String dateFinCc;
+    private String caractereCc;
+    private String cdCategorieDeContrat;
+    private String lbCategorieDeContrat;
+    private String topCcn;
+    private String topFar;
+    private String topMelani;
+    private String cdOffreGlobale;
+    private String lbOffreGlobale;
+    private String cdPmSouscriptrice;
+    private String lbRaisonSocialePmSouscriptrice;
+    private String cdFonctionnelPmSouscriptrice;
+    private String cdPmEtablissement;
+    private String lbRaisonSocialePmEtablissement;
+    private String cdFonctionnelPmEtablissement;
+    private String cdMutualisationRisque;
+    private String lbMutualisationRisque;
+    private String cdGa;
+    private String lbGa;
+    private String lbTypePopulation;
+    private String lbCaractereGa;
+    private String lbGroupeDeGestionGa;
+    private String cdProduit;
+    private String lbNatureProduit;
+    private String lbFamilleProduit;
+    private String lbGamme;
+    private String lbTypeDeProduit;
+    private String lbTypeAssemblageProduit;
+    private String cdGarantieTechnique;
+    private String lbFamilleGarantie;
+    private String lbNatureGarantie;
+    private String cdGarantieConsolidee;
+    private String topGtPrincipale;
+    private String cdNatureFinanciere;
+    private String lbNatureFinanciere;
+    private String cdModeDePartageDuRisquePrdt;
+    private String lbModeDePartageDuRisquePrdt;
+    private String cdModeDePartageDuRisqueGt;
+    private String lbModeDePartageDuRisqueGt;
+    private String topOrganismeGestionnaireCotisationsPrdt;
+    private String topOrganismeGestionnairePrestationsPrdt;
+    private String topOrganismeGestionnaireCotisationsGt;
+    private String topOrganismeGestionnairePrestationsGt;
+    private String topReassurancePrdt;
+    private String topReassuranceGt;
+    private String cdOrganismePrestationsPrdt;
+    private String cdOrganismeCotisationsPrdt;
+    private String cdOrganismePrestationsGt;
+    private String cdOrganismeCotisationsGt;
+}
